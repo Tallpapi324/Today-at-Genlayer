@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>GenLayer Activity Calendar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f9fafb;
+      color: #111827;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      padding: 20px;
+      text-align: center;
+      border-bottom: 1px solid #e5e7eb;
+      background: #ffffff;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    header p {
+      margin-top: 6px;
+      color: #6b7280;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 0 16px;
+    }
+
+    .calendar {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 10px;
+    }
+
+    .day {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 10px;
+      min-height: 100px;
+      cursor: pointer;
+    }
+
+    .day:hover {
+      background: #f3f4f6;
+    }
+
+    .day-number {
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+
+    .activity {
+      font-size: 13px;
+      background: #e0f2fe;
+      padding: 4px 6px;
+      border-radius: 6px;
+      margin-bottom: 4px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 13px;
+      color: #6b7280;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>GenLayer Activity Calendar</h1>
+  <p>Daily roadmap & ecosystem activities</p>
+</header>
+
+<div class="container">
+  <div class="calendar" id="calendar"></div>
+</div>
+
+<footer>
+  Public GenLayer activity tracker • Built for the community
+</footer>
+
+<script>
+  const activities = {
+    1: ["Community sync", "Content planning"],
+    3: ["Dev update", "Protocol research"],
+    5: ["Governance discussion"],
+    10: ["X thread release"],
+    15: ["Ecosystem partner call"],
+    20: ["Weekly review"],
+    25: ["Roadmap update"]
+  };
+
+  const calendar = document.getElementById("calendar");
+  const daysInMonth = 30;
+
+  for (let day = 1; day <= daysInMonth; day++) {
+    const dayDiv = document.createElement("div");
+    dayDiv.className = "day";
+
+    const number = document.createElement("div");
+    number.className = "day-number";
+    number.textContent = day;
+
+    dayDiv.appendChild(number);
+
+    if (activities[day]) {
+      activities[day].forEach(act => {
+        const actDiv = document.createElement("div");
+        actDiv.className = "activity";
+        actDiv.textContent = act;
+        dayDiv.appendChild(actDiv);
+      });
+    }
+
+    calendar.appendChild(dayDiv);
+  }
+</script>
+
+</body>
+</html>
+
